@@ -8,7 +8,11 @@ function typeEffect(element, text, speed) {
         }
     }
     type();
-}
+        // Attach event listener to hide text when "Continue" button is clicked
+        document.getElementById("start-btn").addEventListener("click", function () {
+            document.getElementById("typing-text").style.display = "none";
+        });
+};
 
 // Call the function on page load
 document.addEventListener("DOMContentLoaded", function () {
@@ -69,7 +73,7 @@ const rooms = {
     },
     quest5: {
         name: "Game Consoles",
-        description: "What console do you own?",
+        description: "What console do you currently own?",
         image: "./img/consoles.jpg",
         exitOptions: [
             { key: "end", text: "PlayStation 5", value: 5 },
@@ -105,6 +109,12 @@ function displayRoom(roomKey) {
     const room = rooms[roomKey];
     if (!room) return;
 
+    // If the player reaches the "end" room, generate a Pokémon starter
+    if (roomKey === "end") {
+        fetchPokemonStarter();
+        return;
+    }
+
     $("#room-name").text(room.name);
     $("#room-description").text(room.description);
 
@@ -117,11 +127,6 @@ function displayRoom(roomKey) {
     const optionsContainer = $("#options");
     optionsContainer.empty();
 
-    if (!room.exitOptions || room.exitOptions.length === 0) {
-        fetchPokemonStarter();
-        return;
-    }
-
     room.exitOptions.forEach(option => {
         const button = $("<button></button>")
             .addClass("option-button")
@@ -131,13 +136,15 @@ function displayRoom(roomKey) {
                 updateScoreDisplay();
                 displayRoom(option.key);
             });
+
         optionsContainer.append(button);
     });
-}
+};
+
 
 function updateScoreDisplay() {
     $("#score-display").text(`Score: ${playerScore}`);
-}
+};
 
 // Start button event listener
 $("#start-btn").on("click", function() {
@@ -154,15 +161,6 @@ $("#start-btn").on("click", function() {
     $(this).hide(); // Hide the start button itself
 });
 
-
-function displayPokemonStarter(pokemon) {
-    $("#room-name").text("Your Pokémon Starter!");
-    $("#room-description").html(`Congratulations! Your starter Pokémon is <strong>${pokemon.name}</strong>, a <strong>${pokemon.type}-type</strong> Pokémon.`);
-    $("#room-image").attr("src", pokemon.image).show();
-
-    $("#options").empty().append(`<button class="option-button" onclick="restartGame()">Restart Game</button>`);
-}
-
 async function fetchPokemonStarter() {
     try {
         const response = await fetch("https://sharkham.github.io/starter-generator/data.json");
@@ -175,6 +173,15 @@ async function fetchPokemonStarter() {
     }
 }
 
+function displayPokemonStarter(pokemon) {
+    $("#room-name").text("Your Pokémon Starter!");
+    $("#room-description").html(`Congratulations! Your starter Pokémon is <strong>${pokemon.name}</strong>, a <strong>${pokemon.type}-type</strong> Pokémon.`);
+    $("#room-image").attr("src", pokemon.image).show();
+
+    $("#options").empty().append(`<button class="option-button" onclick="restartGame()">Restart Game</button>`);
+}
+
+
 function restartGame() {
     playerScore = 0;
     currentRoom = "cul";
@@ -185,3 +192,4 @@ function restartGame() {
 $(document).ready(function () {
     $("body").append('<div id="score-display" style="font-size: 20px; margin-top: 10px;">Score: 0</div>');
 });
+

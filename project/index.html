@@ -20,19 +20,20 @@
          .centered-text {
             width: 50%; /* Adjust width */
             margin: 100px auto; /* Centers horizontally and moves down */
-            padding: 20px; /* Adjust padding */
+            padding: 5%; /* Adjust padding */
             text-align: center; /* Centers text inside */
-            background-color: #f0f0f0; /* Background color */
-            border: 2px solid #333; /* Border color */
-            border-radius: 10px; /* Rounded corners */
+            background-color: white; /* Background color */
+            border: 5px solid black; /* Border color */
+            border-radius: 20px; /* Rounded corners */
             box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2); /* Optional shadow */
             font-size: 20px; /* Adjust text size */
-            font-family: Arial, sans-serif; /* Change font */
+            font-family: Georgia, 'Times New Roman', Times, serif; /* Change font */
             height: 50px; /* Ensure it stays a good size */
             display: flex;
             align-items: center; /* Vertical centering */
             justify-content: center; /* Horizontal centering */
-            color: lightpink;
+            color: palevioletred;
+            font-weight: bold;
         }
     </style>
     <meta charset="UTF-8">
@@ -48,31 +49,12 @@
     <!-- External CSS Files -->
     <link rel="stylesheet" type="text/css" href="./css/art.css">
   
-    <!-- Typing Effect Script -->
-    <script>
-        function typeText(elementId, text) {
-            const element = document.getElementById(elementId);
-            let i = 0;
-            function type() {
-                if (i < text.length) {
-                    element.innerHTML += text.charAt(i);
-                    i++;
-                    setTimeout(type, 30);
-                }
-            }
-            type();
-        }
-    </script>
 </head>
 <body>
     <main id="intro">
         <section>
             <h class="title">What Starter Pokemon Are You?</h>
-            <div class="centered-text" id="typing-text">
-                <script>
-                    typeText('typed', " Throughout this quiz you will answer some questions that will determine what Starter Pokemon you are based on your answers! Have fun!! Click the Top Right Corner to start the game music!");
-                </script>
-            </div>
+            <div class="centered-text" id="typing-text"></div>
         </section>
         
         <button id="start-btn">Continue</button>
