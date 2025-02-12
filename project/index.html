@@ -3,7 +3,7 @@
 <head>
     <style>
     body {
-    background-image: url('./img/moon.jpg');
+    background-image: url('./img/forest.jpg');
     height: 100%;
     width: 99%;
     top: 0;
@@ -20,7 +20,7 @@
          .centered-text {
             width: 50%; /* Adjust width */
             margin: 100px auto; /* Centers horizontally and moves down */
-            padding: 5%; /* Adjust padding */
+            padding: 2%; /* Adjust padding */
             text-align: center; /* Centers text inside */
             background-color: white; /* Background color */
             border: 5px solid black; /* Border color */
@@ -38,7 +38,7 @@
     </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ART 160</title>
+    <title>ART 139</title>
 
     <!-- Link to javascript file -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -53,7 +53,7 @@
 <body>
     <main id="intro">
         <section>
-            <h class="title">What Starter Pokemon Are You?</h>
+            <h class="title">What Pokemon Are You?</h>
             <div class="centered-text" id="typing-text"></div>
         </section>
         
@@ -66,14 +66,30 @@
                 <div id="options"></div>
             </div>
 
+            <div id="end-credits" style="display: none; text-align: center; padding: 15px; background: black; color: white;">
+                <h2>🎉 Thank You for Playing! 🎉</h2>
+                <p>Created by Kimberly Estrada</p>
+                <p>Music by: MorningLightMusic on Youtube</p>
+                <p>Pokémon API by <a href="https://pokeapi.co/" target="_blank" style="color: lightblue;">PokéAPI</a></p>
+                <p>Game Developed in JavaScript & jQuery on Github</p>
+            </div>
+            
 
-     <div id="music-controls">
-            <button id="music-button" class="music-button">&#9658;</button> <!-- Default is the play symbol -->
-            <audio id="background-music" autoplay loop>
-              <source src="./audio/Upbeat Lofi Hip Hop Background Music For Videos [ ezmp3.cc ].mp3" type="audio/mpeg">
+        <div id="music-controls">
+            <button id="music-button" class="music-button">&#9658;</button> <!-- Play icon -->
+            <audio id="background-music" loop>
+                <source src="./audio/Upbeat Lofi Hip Hop Background Music For Videos [ ezmp3.cc ].mp3" type="audio/mpeg">
             </audio>
-    </div>
+        </div>
+            
+
+        <div id="pokemon-container">
+            <div id="output"></div>
+            <button id="reset-btn" style="display: none;">Restart Quiz</button>
+        </div>
     
+    
+
     </main>
 
 </body>
